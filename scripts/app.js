@@ -4,7 +4,7 @@ import home from "./controllers/home.js"
 import about from "./controllers/about.js"
 import register, { registerPost } from "./controllers/register.js" // default, { others... } functions from file
 import login, { loginPost, logout } from "./controllers/login.js"
-import catalog from "./controllers/catalog.js"
+import catalog, { joinTeamPost } from "./controllers/catalog.js"
 import details from "./controllers/details.js"
 import create, { createPost } from "./controllers/create.js"
 import edit from "./controllers/edit.js"
@@ -48,6 +48,10 @@ window.addEventListener("load", () => {
         this.get('#/create', create);
 
         this.get('#/edit/:id', edit);
+
+        // this.get('#/leave', alert("leaving..."));
+
+        this.post('#/join/', (context) => { joinTeamPost.call(context); });
 
         // Needed to avoid Sammy's async function problem
         this.post('#/register', (context) => { registerPost.call(context); });

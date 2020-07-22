@@ -22,6 +22,11 @@ export async function loginPost() {
         this.app.userData.loggedIn = true;
         this.app.userData.username = result.username;
         this.app.userData.userId = result.objectId;
+        this.app.userData.teamId = result.teamId;
+        if (this.app.userData.teamId) {
+            this.app.userData.hasTeam = true;
+            this.app.userData.isOnTeam = true;
+        }
 
         // Keep data in browser's storage
         localStorage.setItem("userToken", result['user-token']);
@@ -43,6 +48,7 @@ export async function logout() {
     this.app.userData.username = undefined;
     this.app.userData.userId = undefined;
     this.app.userData.hasTeam = false;
+    this.app.userData.isOnTeam = false;
     this.app.userData.teamId = undefined;
 
     // Clear data in browser's storage

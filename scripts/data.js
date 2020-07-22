@@ -11,7 +11,7 @@ const endpoints = {
     LOGIN: 'users/login',
     TEAMS: 'data/teams',
     UPDATE_USER: 'users/',
-    LOGOUT: 'users/logout'
+    LOGOUT: 'users/logout',
 };
 
 export async function register(username, password) {
@@ -56,7 +56,7 @@ export async function logout() {
 }
 
 
-async function setUserTeamId(userId, teamId) {
+export async function setUserTeamId(userId, teamId) {
     const token = localStorage.getItem('userToken');
     if (!token) {
         throw new Error("User is not logged in!");
@@ -111,6 +111,7 @@ export async function createTeam(team) {
 export async function getTeamById(id) {
     return (await fetch(host(endpoints.TEAMS + '/' + id))).json();
 }
+
 export async function getTeams() {
     return (await fetch(host(endpoints.TEAMS))).json();
 }
